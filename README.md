@@ -4,11 +4,11 @@ Smart Population Hackaton
 Terbentuknya DIDIKARA lahir dari membiarkannya terhadap ketimpangan fasilitas pendidikan yang masih terjadi di berbagai pelosok negeri. Ketika masih ada sekolah yang berdiri di bawah atap bocor, tanpa listrik, meja belajar, atau buku yang memadai, maka keadilan pendidikan belum benar-benar terwujud. DIDIKARA tidak hanya dirancang sebagai sebuah website, melainkan sebagai gerakan sosial digital yang mendorong partisipasi masyarakat untuk ikut memperhatikan dan menyuarakan kondisi nyata di lapangan. Melalui pelaporan berdasarkan bukti dan kolaborasi berbagai pihak, platform ini ingin memastikan bahwa suara dari daerah terpencil dapat sampai ke pengambil kebijakan. Dengan demikian, DIDIKARA merealisasikan keyakinan bahwa pendidikan adalah hak fundamental setiap anak , dan menyediakan hak tersebut adalah tanggung jawab bersama yang kini dapat diwujudkan melalui kekuatan gotong royong digital.
 
 Makna nama 
-Data — pengumpulan bukti kuantitatif dan kualitatif (foto, video, lokasi, deskripsi) sebagai dasar pengambilan keputusan.
-Aksi — bagi mekanisme pemangku kepentingan untuk melaporkan laporan (perbaikan, alokasi anggaran, advokasi kampanye).
-Digital — platform berbasis web/mobile yang memfasilitasi pelaporan, verifikasi, analitik, dan interoperabilitas data.
-Pendidikan — fokus pada sarana & prasarana sekolah: gedung, atap, atap, meja, meja, buku, WC, akses internet, dll.
-Nusantara — cakupan nasional; mendahulukan daerah terluar, terdepan, dan tertinggal.
+1. Data — pengumpulan bukti kuantitatif dan kualitatif (foto, video, lokasi, deskripsi) sebagai dasar pengambilan keputusan.
+2. Aksi — bagi mekanisme pemangku kepentingan untuk melaporkan laporan (perbaikan, alokasi anggaran, advokasi kampanye).
+3. Digital — platform berbasis web/mobile yang memfasilitasi pelaporan, verifikasi, analitik, dan interoperabilitas data.
+4. Pendidikan — fokus pada sarana & prasarana sekolah: gedung, atap, atap, meja, meja, buku, WC, akses internet, dll.
+5. Nusantara — cakupan nasional; mendahulukan daerah terluar, terdepan, dan tertinggal.
 
 Visi & Misi
 Visi: Terwujudnya pemerataan fasilitas pendidikan di seluruh nusantara melalui data terpercaya dan aksi kolaboratif.
