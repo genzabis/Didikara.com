@@ -5,10 +5,10 @@ Terbentuknya DIDIKARA lahir dari membiarkannya terhadap ketimpangan fasilitas pe
 
 Makna nama 
 1. Data — pengumpulan bukti kuantitatif dan kualitatif (foto, video, lokasi, deskripsi) sebagai dasar pengambilan keputusan.
-2. Aksi — bagi mekanisme pemangku kepentingan untuk melaporkan laporan (perbaikan, alokasi anggaran, advokasi kampanye).
-3. Digital — platform berbasis web/mobile yang memfasilitasi pelaporan, verifikasi, analitik, dan interoperabilitas data.
-4. Pendidikan — fokus pada sarana & prasarana sekolah: gedung, atap, atap, meja, meja, buku, WC, akses internet, dll.
-5. Nusantara — cakupan nasional; mendahulukan daerah terluar, terdepan, dan tertinggal.
+2. Aksi — bagi mekanisme pemangku kepentingan untuk melaporkan laporan (perbaikan, alokasi anggaran).
+4. Digital — platform berbasis web/mobile yang memfasilitasi pelaporan, verifikasi, analitik, dan interoperabilitas data.
+5. Pendidikan — fokus pada sarana & prasarana sekolah: gedung, atap, atap, meja, meja, buku, WC, akses internet, dll.
+6. Nusantara — cakupan nasional; mendahulukan daerah terluar, terdepan, dan tertinggal.
 
 Visi & Misi
 Visi: Terwujudnya pemerataan fasilitas pendidikan di seluruh nusantara melalui data terpercaya dan aksi kolaboratif.
