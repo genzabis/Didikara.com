@@ -2,12 +2,8 @@
         <div class="p-6">
             <div class="flex items-center space-x-2 mb-8">
                 <div class="flex items-center">
-                    <i class="fas fa-book-open text-2xl mr-1"></i>
-                    <i class="fas fa-exclamation-triangle text-2xl"></i>
+                    <img src="../assets/img/didikara.png" class="w-32 h-auto" alt="logo">
                 </div>
-                <span class="text-xl font-bold">
-                    didikara<span class="text-amber-400">.com</span>
-                </span>
             </div>
 
             <nav class="space-y-1">
