@@ -21,5 +21,3 @@ switch ($page) {
         require_once '404.php';
         break;
 }
-
-require_once 'footer.php';
