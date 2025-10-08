@@ -37,3 +37,5 @@ Menjelaskan visi, misi, serta tim pengembang di balik DIDIKARA dan semangat goto
 Fitur khusus bagi relawan dan kontributor yang terverifikasi untuk melakukan pengawasan langsung ke lokasi sekolah.
 Kontributor memverifikasi laporan masyarakat, mengumpulkan data lapangan, serta memperbarui status laporan di sistem.
 Langkah ini memastikan data di DIDIKARA akurat, kredibel, dan dapat dijadikan acuan kebijakan pendidikan di masa depan.
+
+Link Design Figma : https://www.figma.com/design/XNrFZeNrbwlv1lvvdnm8hY/Desainiam?node-id=2134-304&t=YHtKH3wvQ0fQX2Ci-1
