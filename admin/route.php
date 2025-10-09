@@ -3,7 +3,6 @@
 $page = $_GET['page'] ?? 'dashboard';
 
 require_once 'navbar.php';
-
 switch ($page) {
     case 'dashboard':
         require_once 'dashboard.php';
