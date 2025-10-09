@@ -39,3 +39,11 @@ Kontributor memverifikasi laporan masyarakat, mengumpulkan data lapangan, serta 
 Langkah ini memastikan data di DIDIKARA akurat, kredibel, dan dapat dijadikan acuan kebijakan pendidikan di masa depan.
 
 Link Design Figma : https://www.figma.com/design/XNrFZeNrbwlv1lvvdnm8hY/Desainiam?node-id=2134-304&t=YHtKH3wvQ0fQX2Ci-1
+
+Tujuan Utama
+
+Mendeteksi secara dini kerusakan fasilitas pendidikan (atap bocor, dinding rusak, bangku patah, dll) sebelum menimbulkan dampak sosial yang lebih besar.
+
+Menyediakan platform pelaporan digital bagi masyarakat, guru, atau pelajar untuk melaporkan kondisi fasilitas sekolah dengan bukti foto dan lokasi akurat.
+
+Menjadi jembatan antara masyarakat dan instansi pendidikan dalam proses verifikasi dan tindak lanjut laporan fasilitas pendidikan.
