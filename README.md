@@ -42,8 +42,11 @@ Link Design Figma : https://www.figma.com/design/XNrFZeNrbwlv1lvvdnm8hY/Desainia
 
 Tujuan Utama
 
-Mendeteksi secara dini kerusakan fasilitas pendidikan (atap bocor, dinding rusak, bangku patah, dll) sebelum menimbulkan dampak sosial yang lebih besar.
+1. Mendeteksi secara dini kerusakan fasilitas pendidikan (atap bocor, dinding rusak, bangku patah, dll) sebelum menimbulkan dampak sosial yang lebih besar.
+2. Menyediakan platform pelaporan digital bagi masyarakat, guru, atau pelajar untuk melaporkan kondisi fasilitas sekolah dengan bukti foto dan lokasi akurat.
+3. Menjadi jembatan antara masyarakat dan instansi pendidikan dalam proses verifikasi dan tindak lanjut laporan fasilitas pendidikan.
 
-Menyediakan platform pelaporan digital bagi masyarakat, guru, atau pelajar untuk melaporkan kondisi fasilitas sekolah dengan bukti foto dan lokasi akurat.
-
-Menjadi jembatan antara masyarakat dan instansi pendidikan dalam proses verifikasi dan tindak lanjut laporan fasilitas pendidikan.
+Didikara hadir sebagai solusi berbasis teknologi yang:
+1. Mempercepat pelaporan & tindak lanjut.
+2. Meningkatkan transparansi & akuntabilitas.
+3. Menghubungkan pelapor, instansi, dan masyarakat.
