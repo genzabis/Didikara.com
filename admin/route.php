@@ -10,8 +10,8 @@ switch ($page) {
     case 'laporan':
         require_once 'laporan.php';
         break;
-    case 'pengguna':
-        require_once 'pengguna.php';
+    case 'admin':
+        require_once 'admin.php';
         break;
     case 'pengaturan':
         require_once 'pengaturan.php';

@@ -29,9 +29,9 @@
 
      <main class="p-6">
          <div class="flex items-center justify-between mb-6">
-             <h1 class="text-2xl font-bold text-gray-900">Pengguna</h1>
+             <h1 class="text-2xl font-bold text-gray-900">Admin</h1>
              <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-                 Tambah Pengguna
+                 Tambah Admin
              </button>
          </div>
 
@@ -40,18 +40,17 @@
                  <div class="flex items-center justify-between mb-4">
                      <div class="flex items-center space-x-2">
                          <i class="fas fa-users text-gray-500"></i>
-                         <span class="text-gray-700 font-medium">Daftar Pengguna</span>
+                         <span class="text-gray-700 font-medium">Daftar Admin</span>
                      </div>
                      <div class="flex items-center space-x-2">
                          <select class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
                              <option value="all">Semua Peran</option>
-                             <option value="admin">Admin</option>
-                             <option value="contributor">Kontributor</option>
-                             <option value="reporter">Pelapor</option>
+                             <option value="admin_daerah">Admin Daerah</option>
+                             <option value="admin_wilayah">Admin Wilayah</option>
                          </select>
                          <input
                              type="text"
-                             placeholder="Cari pengguna..."
+                             placeholder="Cari Admin..."
                              class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                      </div>
                  </div>

@@ -24,9 +24,9 @@ $inactiveClasses = 'text-indigo-100 hover:bg-indigo-800 hover:text-white';
                 <i class="fas fa-clipboard-list"></i>
                 <span>Laporan</span>
             </a>
-            <a href="?page=pengguna" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'pengguna') ? $activeClasses : $inactiveClasses; ?>">
+            <a href="?page=admin" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'pengguna') ? $activeClasses : $inactiveClasses; ?>">
                 <i class="fas fa-users"></i>
-                <span>Pengguna</span>
+                <span>admin</span>
             </a>
             <a href="?page=pengaturan" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'pengaturan') ? $activeClasses : $inactiveClasses; ?>">
                 <i class="fas fa-cog"></i>
