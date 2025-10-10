@@ -15,7 +15,6 @@ if ($mysqli->connect_error) {
     die("Koneksi database gagal: " . $mysqli->connect_error);
 }
 
-
 // LANGKAH 2: PENGAMBILAN SEMUA DATA YANG DIBUTUHKAN
 // ================================================
 
