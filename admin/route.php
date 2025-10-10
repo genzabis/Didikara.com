@@ -1,17 +1,20 @@
 <?php
 
-$page = $_GET['page'] ?? 'dashboard';
+// Gunakan 'view' untuk memilih halaman, 'page' kita khususkan untuk nomor halaman paginasi
+$view = $_GET['view'] ?? 'dashboard';
+$page_number = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Ambil nomor halaman paginasi
 
-require_once 'navbar.php';
-switch ($page) {
+require_once 'navbar.php'; // Ini adalah header/template Anda
+
+switch ($view) {
     case 'dashboard':
         require_once 'dashboard.php';
         break;
     case 'laporan':
         require_once 'laporan.php';
         break;
-    case 'admin':
-        require_once 'admin.php';
+    case 'pengguna':
+        require_once 'pengguna.php';
         break;
     case 'pengaturan':
         require_once 'pengaturan.php';

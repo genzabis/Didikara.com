@@ -1,6 +1,6 @@
 <?php
 // Ambil halaman saat ini dari URL. Jika tidak ada, default-nya adalah 'dashboard'.
-$currentPage = $_GET['page'] ?? 'dashboard';
+$currentPage = $_GET['view'] ?? 'dashboard';
 
 // Definisikan kelas CSS untuk link aktif dan tidak aktif agar lebih rapi
 $activeClasses = 'bg-indigo-800 text-white';
@@ -16,19 +16,19 @@ $inactiveClasses = 'text-indigo-100 hover:bg-indigo-800 hover:text-white';
         </div>
 
         <nav class="space-y-1">
-            <a href="?page=dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'dashboard') ? $activeClasses : $inactiveClasses; ?>">
+            <a href="?view=dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'dashboard') ? $activeClasses : $inactiveClasses; ?>">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
-            <a href="?page=laporan" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'laporan') ? $activeClasses : $inactiveClasses; ?>">
+            <a href="?view=laporan" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'laporan') ? $activeClasses : $inactiveClasses; ?>">
                 <i class="fas fa-clipboard-list"></i>
                 <span>Laporan</span>
             </a>
-            <a href="?page=admin" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'pengguna') ? $activeClasses : $inactiveClasses; ?>">
+            <a href="?view=admin" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'pengguna') ? $activeClasses : $inactiveClasses; ?>">
                 <i class="fas fa-users"></i>
                 <span>admin</span>
             </a>
-            <a href="?page=pengaturan" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'pengaturan') ? $activeClasses : $inactiveClasses; ?>">
+            <a href="?view=pengaturan" class="flex items-center space-x-3 px-4 py-3 rounded-md transition-colors <?php echo ($currentPage === 'pengaturan') ? $activeClasses : $inactiveClasses; ?>">
                 <i class="fas fa-cog"></i>
                 <span>Pengaturan</span>
             </a>
