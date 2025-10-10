@@ -22,11 +22,18 @@ $offset = ($page - 1) * $limit;
 
 $filter_status = $_GET['status'] ?? '';
 $search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
+$filter_jenjang = $_GET['jenjang'] ?? 'all';
 
 // 3. MEMBANGUN QUERY SECARA DINAMIS DAN AMAN
 $where_clauses = [];
 $params = [];
 $types = '';
+
+if ($filter_jenjang == 'daerah') {
+    $where_clauses[] = "(LOWER(r.school_name) LIKE '%sd%' OR LOWER(r.school_name) LIKE '%smp%')";
+} elseif ($filter_jenjang == 'wilayah') {
+    $where_clauses[] = "(LOWER(r.school_name) LIKE '%sma%' OR LOWER(r.school_name) LIKE '%smk%')";
+}
 
 if (!empty($filter_status) && $filter_status != 'all') {
     $where_clauses[] = "r.status = ?";
@@ -120,6 +127,13 @@ function getStatusBadge($status)
                     <option value="resolved" <?= ($filter_status == 'resolved') ? 'selected' : '' ?>>Selesai</option>
                     <option value="rejected" <?= ($filter_status == 'rejected') ? 'selected' : '' ?>>Ditolak</option>
                 </select>
+                <input type="hidden" name="jenjang" value="<?= htmlspecialchars($filter_jenjang) ?>">
+                <select name="jenjang" onchange="this.form.submit()" class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="all" <?= ($_GET['jenjang'] ?? 'all') == 'all' ? 'selected' : '' ?>>Semua Jenjang</option>
+                    <option value="daerah" <?= ($_GET['jenjang'] ?? '') == 'daerah' ? 'selected' : '' ?>>Data Daerah (SD/SMP)</option>
+                    <option value="wilayah" <?= ($_GET['jenjang'] ?? '') == 'wilayah' ? 'selected' : '' ?>>Data Wilayah (SMA/SMK)</option>
+                </select>
+                </select>
                 <button type="button" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Export Data</button>
             </form>
         </div>
@@ -189,7 +203,7 @@ function getStatusBadge($status)
                         <nav>
                             <ul class="flex items-center space-x-2">
                                 <?php for ($i = 1; $i <= $total_pages; $i++):
-                                    $params = ['view' => 'laporan', 'page' => $i, 'status' => $filter_status, 'search' => $search_query];
+                                  $params = ['view' => 'laporan', 'page' => $i, 'jenjang' => $filter_jenjang, 'status' => $filter_status, 'search' => $search_query];
                                 ?>
                                     <li>
                                         <a href="?<?= http_build_query($params) ?>"
