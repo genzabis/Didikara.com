@@ -157,15 +157,15 @@ function getStatusBadge($status) {
                 </div>
 
                 <!-- <div class="bg-white rounded-lg shadow-sm p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
+                    <div class="flex items-start justify-between"> -->
+                        <!-- <div>
                             <p class="text-gray-500 text-sm">Kontributor Aktif</p>
                             <h3 class="text-2xl font-bold text-gray-800 mt-1"><?= number_format($kontributor_aktif) ?></h3>
-                        </div>
-                        <div class="bg-indigo-50 p-3 rounded-lg">
+                        </div> -->
+                        <!-- <div class="bg-indigo-50 p-3 rounded-lg">
                             <i class="fas fa-users text-teal-600 text-xl"></i>
-                        </div>
-                    </div>
+                        </div> -->
+                    <!-- </div>
                 </div> -->
 
                 <div class="bg-white rounded-lg shadow-sm p-6">

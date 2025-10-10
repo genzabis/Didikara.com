@@ -22,7 +22,6 @@ if ($mysqli->connect_error) {
 // --- Data untuk Kartu Statistik ---
 $total_laporan = $mysqli->query("SELECT COUNT(id) AS total FROM reports")->fetch_assoc()['total'];
 $sekolah_terpantau = $mysqli->query("SELECT COUNT(DISTINCT school_name) AS total FROM reports")->fetch_assoc()['total'];
-// $kontributor_aktif = $mysqli->query("SELECT COUNT(id) AS total FROM contributors WHERE status = 'approved'")->fetch_assoc()['total'];
 $provinsi_terjangkau = $mysqli->query("SELECT COUNT(DISTINCT province_id) AS total FROM reports WHERE province_id IS NOT NULL")->fetch_assoc()['total'];
 
 // --- Data untuk Diagram Tren Laporan (6 Bulan Terakhir) ---
@@ -155,18 +154,6 @@ function getStatusBadge($status) {
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="bg-white rounded-lg shadow-sm p-6">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">Kontributor Aktif</p>
-                            <h3 class="text-2xl font-bold text-gray-800 mt-1"><?= number_format($kontributor_aktif) ?></h3>
-                        </div>
-                        <div class="bg-indigo-50 p-3 rounded-lg">
-                            <i class="fas fa-users text-teal-600 text-xl"></i>
-                        </div>
-                    </div>
-                </div> -->
 
                 <div class="bg-white rounded-lg shadow-sm p-6">
                     <div class="flex items-start justify-between">

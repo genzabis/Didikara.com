@@ -4,17 +4,18 @@ session_start();
 // Periksa apakah user sudah login. Jika belum, tendang ke halaman login utama.
 if (!isset($_SESSION['user_id'])) {
     // Arahkan kembali ke login.php di folder root
-    header('Location: ../login.php'); 
+    header('Location: ../');
     exit();
 }
 
 // Periksa apakah role user sesuai dengan folder ini
 $role = $_SESSION['user_role'];
-$current_folder_role = 'admin'; // Ganti ini di setiap folder!
+$current_folder_role = 'admin-wilayah'; // Ganti ini di setiap folder!
 
 if ($role !== $current_folder_role) {
     // Jika admin daerah mencoba masuk ke folder pusat, tendang dia.
-    header('Location: ../');
+    header('Location: ../login.php');
+    exit();
 }
 ?>
 
