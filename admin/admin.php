@@ -94,6 +94,62 @@ function getStatusBadge($isActive)
 
 
 <div id="main-content" class="main-content">
+    <div id="addAdminModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg">
+            <form id="addAdminForm" method="POST" action="tambah_admin_proses.php">
+                <div class="flex items-center justify-between p-4 border-b">
+                    <h2 class="text-xl font-semibold text-gray-800">Tambah Admin Baru</h2>
+                    <button type="button" id="closeAddModal" class="text-gray-500 hover:text-gray-800">&times;</button>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div>
+                        <label for="full_name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                        <input type="text" name="full_name" id="full_name" required class="mt-1 w-full px-3 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" id="email" required class="mt-1 w-full px-3 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" name="password" id="password" required class="mt-1 w-full px-3 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="role" class="block text-sm font-medium text-gray-700">Peran (Role)</label>
+                        <select name="role" id="role" required class="mt-1 w-full px-3 py-2 border rounded-md">
+                            <option value="admin_pusat">Admin Pusat</option>
+                            <option value="admin_wilayah">Admin Wilayah</option>
+                            <option value="admin_daerah">Admin Daerah</option>
+                        </select>
+                    </div>
+                    <div id="locationInputs" class="space-y-4 hidden">
+                        <div>
+                            <label for="province_id" class="block text-sm font-medium text-gray-700">Provinsi</label>
+                            <select name="province_id" id="province_id" class="mt-1 w-full px-3 py-2 border rounded-md">
+                                <?php
+                                // Ambil daftar provinsi dari database
+                                $provinces = $mysqli->query("SELECT id, name FROM provinces ORDER BY name ASC");
+                                if ($provinces) {
+                                    while ($province = $provinces->fetch_assoc()) {
+                                        echo "<option value='{$province['id']}'>" . htmlspecialchars($province['name']) . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div id="districtInputContainer" class="hidden">
+                            <label for="district" class="block text-sm font-medium text-gray-700">Kabupaten/Kota</label>
+                            <input type="text" name="district" id="district" placeholder="Contoh: Kabupaten Purbalingga" class="mt-1 w-full px-3 py-2 border rounded-md">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end p-4 border-t space-x-2">
+                    <button type="button" id="cancelAdd" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Batal</button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <header class="bg-white shadow-sm">
         <div class="flex items-center justify-between px-6 py-4">
             <button id="sidebar-toggle" class="text-gray-500 hover:text-gray-700 focus:outline-none">
@@ -105,8 +161,8 @@ function getStatusBadge($isActive)
                         <i class="fas fa-user text-indigo-600"></i>
                     </div>
                     <div class="text-sm">
-                        <p class="font-medium text-gray-700">Admin User</p>
-                        <p class="text-gray-500 text-xs">admin@didikara.com</p>
+                        <p class="font-medium text-gray-700"><?= htmlspecialchars($_SESSION['full_name'] ?? 'Nama Pengguna') ?></p>
+                        <p class="text-gray-500 text-xs"><?= htmlspecialchars($_SESSION['email'] ?? 'email@pengguna.com') ?></p>
                     </div>
                 </div>
             </div>
@@ -116,7 +172,7 @@ function getStatusBadge($isActive)
     <main class="p-6">
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-2xl font-bold text-gray-900">Admin</h1>
-            <button class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+            <button id="addAdminBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
                 Tambah Admin
             </button>
         </div>
@@ -196,3 +252,52 @@ function getStatusBadge($isActive)
         </div>
     </main>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const addAdminModal = document.getElementById('addAdminModal');
+    const addAdminBtn = document.getElementById('addAdminBtn');
+    const closeAddModal = document.getElementById('closeAddModal');
+    const cancelAdd = document.getElementById('cancelAdd');
+    
+    const roleSelect = document.getElementById('role');
+    const locationInputs = document.getElementById('locationInputs');
+    const districtInputContainer = document.getElementById('districtInputContainer');
+
+    // Fungsi untuk menampilkan/menyembunyikan input lokasi
+    function toggleLocationInputs() {
+        const selectedRole = roleSelect.value;
+        if (selectedRole === 'admin_wilayah' || selectedRole === 'admin_daerah') {
+            locationInputs.classList.remove('hidden');
+            if (selectedRole === 'admin_daerah') {
+                districtInputContainer.classList.remove('hidden');
+            } else {
+                districtInputContainer.classList.add('hidden');
+            }
+        } else {
+            locationInputs.classList.add('hidden');
+        }
+    }
+
+    // Tampilkan modal saat tombol "Tambah Admin" diklik
+    addAdminBtn.addEventListener('click', () => {
+        addAdminModal.classList.remove('hidden');
+        addAdminModal.classList.add('flex');
+    });
+
+    // Sembunyikan modal
+    function hideModal() {
+        addAdminModal.classList.add('hidden');
+        addAdminModal.classList.remove('flex');
+    }
+
+    closeAddModal.addEventListener('click', hideModal);
+    cancelAdd.addEventListener('click', hideModal);
+
+    // Event listener untuk dropdown role
+    roleSelect.addEventListener('change', toggleLocationInputs);
+
+    // Panggil sekali saat halaman dimuat
+    toggleLocationInputs();
+});
+</script>
