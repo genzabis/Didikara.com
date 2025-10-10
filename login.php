@@ -17,10 +17,9 @@ if (isset($_SESSION['user_id'])) {
 <body class="bg-gray-100 flex items-center justify-center h-screen">
 
     <div class="w-full max-w-sm bg-white rounded-lg shadow-md p-8">
-        <div class="flex justify-center mb-6">
-            <img src="../assets/img/didikara.png" class="w-40 h-auto" alt="logo">
+        <div class="flex justify-center mb-3">
+            <img src="assets/img/didikara 3.png" class="w-40 h-auto" alt="logo">
         </div>
-        <h2 class="text-xl font-bold text-center text-gray-700 mb-1">Admin Panel</h2>
         <p class="text-center text-gray-500 text-sm mb-6">Silakan masuk untuk melanjutkan</p>
         
         <?php if (isset($_GET['error'])): ?>
