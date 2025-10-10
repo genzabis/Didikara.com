@@ -23,8 +23,11 @@ switch ($page) {
     case 'about':
         require_once 'about/about.php';
         break;
-    case 'contribute':
-        require_once 'contribute/contribute.php';
+    case 'news-detail':
+        require_once 'news/news_detail.php';
+        break;
+    case 'detail-report':
+        require_once 'report/report_detail.php';
         break;
     default:
         require_once '404.php';

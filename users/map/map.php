@@ -152,7 +152,7 @@
           <span class="text-gray-500">Dilaporkan: ${d.date || '-'}</span>
           <span class="${statusBadgeClass[d.status] || ''}">${statusText[d.status] || (d.status || '').toString()}</span>
         </div>
-        <a href="report-detail.php?id=${d.id}" class="inline-flex items-center justify-center px-3 py-1.5 bg-indigo-900 hover:bg-indigo-800 text-white rounded-md font-medium text-xs transition-colors">
+        <a href="./?page=detail-report&id=${d.id}" class="inline-flex items-center justify-center px-3 py-1.5 bg-indigo-900 hover:bg-indigo-800 text-white rounded-md font-medium text-xs transition-colors">
           Lihat Detail
         </a>
       </div>

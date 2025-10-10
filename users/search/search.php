@@ -324,7 +324,7 @@ function e($s)
             <p class="text-gray-600 line-clamp-2">${d.description || ''}</p>
           </div>
           <div class="mt-4 flex justify-end">
-            <a href="report-detail.php?id=${d.id}" class="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md font-medium text-sm hover:bg-indigo-50 transition-colors">
+            <a href="./?page=detail-report&id=${d.id}" class="px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md font-medium text-sm hover:bg-indigo-50 transition-colors">
               Lihat Detail
             </a>
           </div>

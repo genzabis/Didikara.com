@@ -16,9 +16,6 @@
     <div class="container mx-auto px-4 md:px-6">
         <header class="relative rounded-xl overflow-hidden mb-16">
             <div class="gradient-bg absolute inset-0"></div>
-            <div class="absolute inset-0 opacity-20">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.pexels.com/photos/301926/pexels-photo-301926.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"></div>
-            </div>
             <div class="relative p-8 md:p-12 text-center">
                 <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Tentang Didikara.com</h1>
                 <p class="text-gray-200 max-w-2xl mx-auto text-lg">
@@ -48,8 +45,8 @@
                 <figure class="animate-fadeIn w-full md:max-w-2xl md:justify-self-end">
                     <div class="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-lg shadow-lg">
                         <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jbQ3OY7CK_dYtUifWhOcFb13bEPRIcy2kQ&s"
-                            alt="Tim Didikara berdiskusi"
+                            src="./assets/img/404.png"
+                            alt="Tim Didikara"
                             class="absolute inset-0 w-full h-full object-cover object-center" />
                     </div>
                 </figure>

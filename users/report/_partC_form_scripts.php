@@ -46,10 +46,10 @@
                     if (distance !== null) {
                         distanceInfo.classList.remove('hidden');
                         distanceInfo.textContent = `Jarak dari lokasi Anda ke sekolah: ${distance.toFixed(0)} meter.`;
-                        if (distance > 50) {
+                        if (distance > 600) {
                             distanceInfo.classList.remove('text-indigo-700');
                             distanceInfo.classList.add('text-red-600');
-                            distanceInfo.textContent += ' (JARAK MELEBIHI 50M)';
+                            distanceInfo.textContent += ' (JARAK MELEBIHI 600M)';
                         } else {
                             distanceInfo.classList.remove('text-red-600');
                             distanceInfo.classList.add('text-indigo-700');
@@ -149,7 +149,7 @@
 
                     if (userLat && userLng && schoolLoc) {
                         const distance = app.utils.calculateDistance(userLat, userLng, schoolLoc.lat, schoolLoc.lng);
-                        if (distance > 500) {
+                        if (distance > 600) {
                             alert(`Jarak Anda dari sekolah sekitar ${distance.toFixed(0)} meter. Lokasi Anda terlalu jauh dari sekolah yang dilaporkan (maksimal 500 meter).`);
                             return false;
                         }
@@ -656,7 +656,7 @@
                 document.body.style.overflow = '';
             }
         };
-        
+
         app.init();
     });
 </script>
