@@ -1,58 +1,75 @@
 <?php
+// // Selalu mulai session di baris paling atas
+// session_start();
+
+// Keamanan: Pastikan user sudah login dan rolenya adalah admin_daerah
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin-daerah') {
+    header('Location: ../login.php');
+    exit();
+}
+
+// Ambil data admin daerah yang sedang login dari session
+$user_district = $_SESSION['district'] ?? null;
+
 // =======================================================
-// SEMUA LOGIKA PHP YANG SUDAH KITA BUAT SEBELUMNYA
-// (TIDAK ADA YANG DIUBAH, HANYA DIPINDAHKAN KE SINI)
+// BAGIAN LOGIKA PHP UNTUK LAPORAN ADMIN DAERAH
 // =======================================================
 
 // 1. KONEKSI DATABASE
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$db   = 'db_didikara';
+$db = 'db_didikara';
 $mysqli = new mysqli($host, $user, $pass, $db);
 if ($mysqli->connect_error) {
     die("Koneksi database gagal: " . $mysqli->connect_error);
 }
 
-// 2. LOGIKA PAGINASI DAN FILTER
-// Menggunakan variabel $page_number dari route.php
+// 2. LOGIKA PAGINASI DAN FILTER MANUAL
+global $page_number; // Ambil dari route.php
 $limit = 10;
-$page = $page_number ?? 1; // Mengambil dari router, default ke 1
+$page = $page_number ?? ($_GET['page'] ?? 1);
+$page = max(1, (int)$page);
 $offset = ($page - 1) * $limit;
 
-$filter_status = $_GET['status'] ?? '';
+$filter_status = $_GET['status'] ?? 'all';
 $search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
-$filter_jenjang = $_GET['jenjang'] ?? 'all';
 
-// 3. MEMBANGUN QUERY SECARA DINAMIS DAN AMAN
+// 3. MEMBANGUN QUERY DENGAN FILTER OTOMATIS + MANUAL
 $where_clauses = [];
 $params = [];
 $types = '';
 
-if ($filter_jenjang == 'daerah') {
-    $where_clauses[] = "(LOWER(r.school_name) LIKE '%sd%' OR LOWER(r.school_name) LIKE '%smp%')";
-} elseif ($filter_jenjang == 'wilayah') {
-    $where_clauses[] = "(LOWER(r.school_name) LIKE '%sma%' OR LOWER(r.school_name) LIKE '%smk%')";
+// Filter OTOMATIS 1: Hanya jenjang SD/MI dan SMP/MTs
+$where_clauses[] = "(LOWER(r.school_name) LIKE '%sd%' OR LOWER(r.school_name) LIKE '%smp%' OR LOWER(r.school_name) LIKE '%mi%' OR LOWER(r.school_name) LIKE '%mts%')";
+
+// Filter OTOMATIS 2: Hanya dari kabupaten/kota milik admin
+if (!empty($user_district)) {
+    $where_clauses[] = "(r.school_name LIKE ? OR r.address LIKE ? OR r.kab_kota LIKE ?)";
+    $district_term = "%" . $user_district . "%";
+    $params[] = $district_term;
+    $params[] = $district_term;
+    $params[] = $district_term;
+    $types .= 'sss';
+} else {
+    $where_clauses[] = "1=0"; // Keamanan jika admin daerah tidak punya data distrik
 }
 
+// Filter MANUAL dari pengguna
 if (!empty($filter_status) && $filter_status != 'all') {
     $where_clauses[] = "r.status = ?";
     $params[] = $filter_status;
     $types .= 's';
 }
 if (!empty($search_query)) {
-    // Mengubah pencarian nama sekolah menjadi case-insensitive
     $where_clauses[] = "(LOWER(r.school_name) LIKE ? OR r.id = ?)";
-
-    // Siapkan parameter: ubah input ke huruf kecil dan tambahkan wildcard %
     $search_term_like = "%" . strtolower($search_query) . "%";
-
     $params[] = $search_term_like;
-    $params[] = $search_query; // ID tetap dicari secara persis
+    $params[] = $search_query;
     $types .= 'ss';
 }
 
-$where_sql = count($where_clauses) > 0 ? "WHERE " . implode(' AND ', $where_clauses) : '';
+$where_sql = "WHERE " . implode(' AND ', $where_clauses);
 
 // 4. QUERY UNTUK MENGHITUNG TOTAL DATA
 $count_sql = "SELECT COUNT(r.id) as total FROM reports r $where_sql";
@@ -65,19 +82,11 @@ $total_results = $stmt_count->get_result()->fetch_assoc()['total'];
 $total_pages = ceil($total_results / $limit);
 
 // 5. QUERY UTAMA UNTUK MENGAMBIL DATA LAPORAN
-$sql = "
-    SELECT r.id, r.school_name, it.name AS issue_name, r.status, r.created_at
-    FROM reports r
-    JOIN issue_types it ON r.issue_type_id = it.id
-    $where_sql
-    ORDER BY r.id DESC
-    LIMIT ? OFFSET ?
-";
+$sql = "SELECT r.id, r.school_name, it.name AS issue_name, r.status, r.created_at FROM reports r JOIN issue_types it ON r.issue_type_id = it.id $where_sql ORDER BY r.id DESC LIMIT ? OFFSET ?";
 $params_main_query = $params;
 $params_main_query[] = $limit;
 $params_main_query[] = $offset;
 $types_main_query = $types . 'ii';
-
 $stmt = $mysqli->prepare($sql);
 if (count($params_main_query) > 0) {
     $stmt->bind_param($types_main_query, ...$params_main_query);
@@ -85,7 +94,7 @@ if (count($params_main_query) > 0) {
 $stmt->execute();
 $result = $stmt->get_result();
 
-// 6. FUNGSI BANTU UNTUK TAMPILAN STATUS
+// 6. FUNGSI BANTU
 function getStatusBadge($status)
 {
     $styles = ['pending' => 'bg-yellow-100 text-yellow-800', 'confirmed' => 'bg-blue-100 text-blue-800', 'investigating' => 'bg-cyan-100 text-cyan-800', 'resolved' => 'bg-green-100 text-green-800', 'rejected' => 'bg-red-100 text-red-800', 'archived' => 'bg-gray-100 text-gray-800'];
@@ -126,13 +135,6 @@ function getStatusBadge($status)
                     <option value="confirmed" <?= ($filter_status == 'confirmed') ? 'selected' : '' ?>>Dikonfirmasi</option>
                     <option value="resolved" <?= ($filter_status == 'resolved') ? 'selected' : '' ?>>Selesai</option>
                     <option value="rejected" <?= ($filter_status == 'rejected') ? 'selected' : '' ?>>Ditolak</option>
-                </select>
-                <input type="hidden" name="jenjang" value="<?= htmlspecialchars($filter_jenjang) ?>">
-                <select name="jenjang" onchange="this.form.submit()" class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option value="all" <?= ($_GET['jenjang'] ?? 'all') == 'all' ? 'selected' : '' ?>>Semua Jenjang</option>
-                    <option value="daerah" <?= ($_GET['jenjang'] ?? '') == 'daerah' ? 'selected' : '' ?>>Data Daerah (SD/SMP)</option>
-                    <option value="wilayah" <?= ($_GET['jenjang'] ?? '') == 'wilayah' ? 'selected' : '' ?>>Data Wilayah (SMA/SMK)</option>
-                </select>
                 </select>
                 <button type="button" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Export Data</button>
             </form>
@@ -203,7 +205,12 @@ function getStatusBadge($status)
                         <nav>
                             <ul class="flex items-center space-x-2">
                                 <?php for ($i = 1; $i <= $total_pages; $i++):
-                                    $params = ['view' => 'laporan', 'page' => $i, 'jenjang' => $filter_jenjang, 'status' => $filter_status, 'search' => $search_query];
+                                    $params = [
+                                        'view' => 'laporan', // Parameter ini wajib ada untuk router
+                                        'page' => $i,
+                                        'status' => $filter_status,
+                                        'search' => $search_query
+                                    ];
                                 ?>
                                     <li>
                                         <a href="?<?= http_build_query($params) ?>"

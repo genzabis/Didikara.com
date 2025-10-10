@@ -13,8 +13,8 @@ switch ($view) {
     case 'laporan':
         require_once 'laporan.php';
         break;
-    case 'admin':
-        require_once 'admin.php';
+    case 'pengguna':
+        require_once 'pengguna.php';
         break;
     case 'pengaturan':
         require_once 'pengaturan.php';
