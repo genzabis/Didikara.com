@@ -1,20 +1,43 @@
 <?php
+session_set_cookie_params([
+  'lifetime' => 0,
+  'path' => '/',
+  'secure' => !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off',
+  'httponly' => true,
+  'samesite' => 'Lax',
+]);
 session_start();
 
-// Periksa apakah user sudah login. Jika belum, tendang ke halaman login utama.
-if (!isset($_SESSION['user_id'])) {
-    // Arahkan kembali ke login.php di folder root
-    header('Location: ../'); 
+// 1) Wajib login
+if (empty($_SESSION['user_id'])) {
+    header('Location: /login.php');
     exit();
 }
 
-// Periksa apakah role user sesuai dengan folder ini
-$role = $_SESSION['user_role'];
-$current_folder_role = 'admin-daerah'; // Ganti ini di setiap folder!
+// 2) Peta role -> folder tujuan
+function role_basepath(string $role): ?string {
+    $map = [
+        'admin'         => '../admin/',
+        'admin-daerah'  => '../daerah/',
+        'admin-wilayah' => '../wilayah/',
+    ];
+    return $map[$role] ?? null;
+}
 
+$role = $_SESSION['user_role'] ?? '';
+$current_folder_role = 'admin-daerah'; // <- UBAH sesuai folder ini
+
+$dest = role_basepath($role);
+
+// 3) Kalau role tidak dikenal → keluarin ke halaman utama (aman)
+if ($dest === null) {
+    header('Location: /');
+    exit();
+}
+
+// 4) Kalau role tidak sesuai folder saat ini → lempar ke folder rolenya
 if ($role !== $current_folder_role) {
-    // Jika admin daerah mencoba masuk ke folder pusat, tendang dia.
-    header('Location: ../');
+    header('Location: ' . $dest);
     exit();
 }
 ?>

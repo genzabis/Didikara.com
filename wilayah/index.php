@@ -1,23 +1,37 @@
 <?php
 session_start();
 
-// Periksa apakah user sudah login. Jika belum, tendang ke halaman login utama.
+// 1. Cek login
 if (!isset($_SESSION['user_id'])) {
-    // Arahkan kembali ke login.php di folder root
-    header('Location: ../');
-    exit();
-}
-
-// Periksa apakah role user sesuai dengan folder ini
-$role = $_SESSION['user_role'];
-$current_folder_role = 'admin-wilayah'; // Ganti ini di setiap folder!
-
-if ($role !== $current_folder_role) {
-    // Jika admin daerah mencoba masuk ke folder pusat, tendang dia.
+    // Belum login -> balik ke halaman login di folder root
     header('Location: ../login.php');
     exit();
 }
+
+// 2. Ambil role user dari session
+$role = $_SESSION['user_role'] ?? '';
+$current_folder_role = 'admin-wilayah'; // 🔁 Ganti sesuai folder ini!
+
+// 3. Mapping role ke folder
+$role_paths = [
+    'admin'         => '../admin/',
+    'admin-daerah'  => '../daerah/',
+    'admin-wilayah' => '../wilayah/',
+];
+
+// 4. Kalau role user ga valid -> tendang ke login
+if (!isset($role_paths[$role])) {
+    header('Location: ../login.php');
+    exit();
+}
+
+// 5. Kalau role user tidak cocok dengan folder saat ini -> pindahkan ke foldernya sendiri
+if ($role !== $current_folder_role) {
+    header('Location: ' . $role_paths[$role]);
+    exit();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
