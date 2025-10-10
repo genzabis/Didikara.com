@@ -8,10 +8,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
             header('Location: ./admin/');
             break;
         case 'admin-daerah':
-            header('Location: /daerah/');
+            header('Location: ./daerah/');
             break;
         case 'admin-wilayah':
-            header('Location: /wilayah/');
+            header('Location: ./wilayah/');
             break;
         default:
             // Kalau role gak dikenal, logout aja untuk keamanan
