@@ -1,8 +1,24 @@
 <?php
 session_start();
-// Jika user sudah login, langsung alihkan ke dashboard
-if (isset($_SESSION['user_id'])) {
-    header('Location: index.php?view=dashboard');
+
+// Jika user sudah login, arahkan ke dashboard sesuai rolenya
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
+    switch ($_SESSION['user_role']) {
+        case 'admin':
+            header('Location: ./admin/');
+            break;
+        case 'admin-daerah':
+            header('Location: /daerah/');
+            break;
+        case 'admin-wilayah':
+            header('Location: /wilayah/');
+            break;
+        default:
+            // Kalau role gak dikenal, logout aja untuk keamanan
+            session_destroy();
+            header('Location: login.php?error=' . urlencode('Sesi tidak valid.'));
+            break;
+    }
     exit();
 }
 ?>

@@ -95,7 +95,7 @@ function getStatusBadge($isActive)
 
 <div id="main-content" class="main-content">
     <div id="addAdminModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 hidden items-center justify-center">
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg">
+  <div class="bg-white rounded-lg shadow-xl w-full max-w-lg mx-4"> 
             <form id="addAdminForm" method="POST" action="tambah_admin_proses.php">
                 <div class="flex items-center justify-between p-4 border-b">
                     <h2 class="text-xl font-semibold text-gray-800">Tambah Admin Baru</h2>
@@ -151,99 +151,117 @@ function getStatusBadge($isActive)
         </div>
     </div>
     <header class="bg-white shadow-sm">
-        <div class="flex items-center justify-between px-6 py-4">
+        <div class="flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
             <button id="sidebar-toggle" class="text-gray-500 hover:text-gray-700 focus:outline-none">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
-                        <i class="fas fa-user text-indigo-600"></i>
-                    </div>
-                    <div class="text-sm">
-                        <p class="font-medium text-gray-700"><?= htmlspecialchars($_SESSION['full_name'] ?? 'Nama Pengguna') ?></p>
-                        <p class="text-gray-500 text-xs"><?= htmlspecialchars($_SESSION['email'] ?? 'email@pengguna.com') ?></p>
-                    </div>
+            <div class="flex items-center space-x-3 md:space-x-4 min-w-0">
+                <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-user text-indigo-600"></i>
+                </div>
+                <div class="text-sm min-w-0">
+                    <p class="font-medium text-gray-700 truncate max-w-[180px] md:max-w-none">
+                        <?= htmlspecialchars($_SESSION['full_name'] ?? 'Nama Pengguna') ?>
+                    </p>
+                    <p class="text-gray-500 text-xs truncate max-w-[180px] md:max-w-none">
+                        <?= htmlspecialchars($_SESSION['email'] ?? 'email@pengguna.com') ?>
+                    </p>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="p-6">
-        <div class="flex items-center justify-between mb-6">
-            <h1 class="text-2xl font-bold text-gray-900">Admin</h1>
-            <button id="addAdminBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+
+    <main class="p-4 md:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+            <h1 class="text-xl md:text-2xl font-bold text-gray-900">Admin</h1>
+            <button id="addAdminBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 w-full sm:w-auto">
                 Tambah Admin
             </button>
         </div>
 
+
         <div class="bg-white rounded-lg shadow">
-            <div class="p-6">
-                <form method="GET" class="flex items-center justify-between mb-4">
+            <div class="p-4 md:p-6">
+                <form method="GET" class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-4">
                     <input type="hidden" name="view" value="admin">
-                    <div class="flex items-center space-x-2">
+                    <div class="flex items-center gap-2 text-sm text-gray-700">
                         <i class="fas fa-users text-gray-500"></i>
-                        <span class="text-gray-700 font-medium">Daftar Admin</span>
+                        <span class="font-medium">Daftar Admin</span>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <select name="role" onchange="this.form.submit()" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                        <select name="role" onchange="this.form.submit()" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-48">
                             <option value="all" <?= ($filter_role == 'all' || $filter_role == '') ? 'selected' : '' ?>>Semua Peran</option>
                             <option value="admin" <?= $filter_role == 'admin' ? 'selected' : '' ?>>Admin Pusat</option>
                             <option value="admin-daerah" <?= $filter_role == 'admin-daerah' ? 'selected' : '' ?>>Admin Daerah</option>
                             <option value="admin-wilayah" <?= $filter_role == 'admin-wilayah' ? 'selected' : '' ?>>Admin Wilayah</option>
                         </select>
-                        <input type="text" name="search" placeholder="Cari nama atau email..." value="<?= htmlspecialchars($search_query) ?>" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                        <input type="text" name="search" placeholder="Cari nama atau email..." value="<?= htmlspecialchars($search_query) ?>"
+                            class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-64" />
                     </div>
                 </form>
 
+
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead>
+                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                        <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Peran</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bergabung</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Peran</th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Status</th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Bergabung</th>
+                                <th class="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <?php if ($result_users && $result_users->num_rows > 0): ?>
                                 <?php while ($user_row = $result_users->fetch_assoc()): ?>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm font-medium text-gray-900"><?= htmlspecialchars($user_row['full_name']) ?></div>
+                                    <tr class="align-top">
+                                        <td class="px-4 md:px-6 py-3 whitespace-normal break-words">
+                                            <div class="font-medium text-gray-900"><?= htmlspecialchars($user_row['full_name']) ?></div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($user_row['email']) ?></td>
-                                        <td class="px-6 py-4 whitespace-nowrap"><?= getRoleBadge($user_row['role']) ?></td>
-                                        <td class="px-6 py-4 whitespace-nowrap"><?= getStatusBadge($user_row['is_active']) ?></td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= date('d M Y', strtotime($user_row['created_at'])) ?></td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</button>
-                                            <button class="text-red-600 hover:text-red-900">Hapus</button>
+                                        <td class="px-4 md:px-6 py-3 whitespace-normal">
+                                            <div class="text-gray-900 truncate max-w-[180px] sm:max-w-[260px] md:max-w-none">
+                                                <?= htmlspecialchars($user_row['email']) ?>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 md:px-6 py-3"><?= getRoleBadge($user_row['role']) ?></td>
+                                        <td class="px-4 md:px-6 py-3 hidden sm:table-cell"><?= getStatusBadge($user_row['is_active']) ?></td>
+                                        <td class="px-4 md:px-6 py-3 hidden sm:table-cell text-gray-900">
+                                            <?= date('d M Y', strtotime($user_row['created_at'])) ?>
+                                        </td>
+                                        <td class="px-4 md:px-6 py-3">
+                                            <div class="flex items-center gap-3">
+                                                <button class="text-indigo-600 hover:text-indigo-900">Edit</button>
+                                                <button class="text-red-600 hover:text-red-900">Hapus</button>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="6" class="text-center px-6 py-4 text-gray-500">Tidak ada admin yang ditemukan.</td>
+                                    <td colspan="6" class="text-center px-4 md:px-6 py-4 text-gray-500">Tidak ada admin yang ditemukan.</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="flex items-center justify-between mt-4">
-                    <div class="text-sm text-gray-700">
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mt-4">
+                    <div class="text-xs sm:text-sm text-gray-700">
                         Menampilkan <?= $total_results > 0 ? $offset + 1 : 0 ?>-<?= min($offset + $limit, $total_results) ?> dari <?= $total_results ?> pengguna
                     </div>
                     <?php if ($total_pages > 1): ?>
-                        <div class="flex items-center space-x-2">
+                        <div class="flex flex-wrap items-center gap-2">
                             <?php for ($i = 1; $i <= $total_pages; $i++):
                                 $params = ['view' => 'admin', 'page' => $i, 'role' => $filter_role, 'search' => $search_query];
                             ?>
-                                <a href="?<?= http_build_query($params) ?>" class="px-3 py-1 border rounded-md text-sm <?= $page == $i ? 'bg-indigo-50 text-indigo-600' : 'hover:bg-gray-50' ?>"><?= $i ?></a>
+                                <a href="?<?= http_build_query($params) ?>"
+                                    class="px-3 py-1 border rounded-md text-sm <?= $page == $i ? 'bg-indigo-50 text-indigo-600 border-indigo-200' : 'hover:bg-gray-50' ?>">
+                                    <?= $i ?>
+                                </a>
                             <?php endfor; ?>
                         </div>
                     <?php endif; ?>
@@ -251,6 +269,7 @@ function getStatusBadge($isActive)
             </div>
         </div>
     </main>
+
 </div>
 
 <script>
