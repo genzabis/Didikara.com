@@ -117,8 +117,8 @@ function getStatusBadge($status)
                         <i class="fas fa-user text-indigo-600"></i>
                     </div>
                     <div class="text-sm">
-                        <p class="font-medium text-gray-700">Admin User</p>
-                        <p class="text-gray-500 text-xs">admin@didikara.com</p>
+                        <p class="font-medium text-gray-700"><?= htmlspecialchars($_SESSION['full_name'] ?? 'Nama Pengguna') ?></p>
+                        <p class="text-gray-500 text-xs"><?= htmlspecialchars($_SESSION['email'] ?? 'email@pengguna.com') ?></p>
                     </div>
                 </div>
             </div>

@@ -17,9 +17,14 @@ $user_district = $_SESSION['district'] ?? null;
 // =======================================================
 
 // 1. KONEKSI DATABASE
-$host = 'localhost'; $user = 'root'; $pass = ''; $db = 'db_didikara';
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db = 'db_didikara';
 $mysqli = new mysqli($host, $user, $pass, $db);
-if ($mysqli->connect_error) { die("Koneksi database gagal: " . $mysqli->connect_error); }
+if ($mysqli->connect_error) {
+    die("Koneksi database gagal: " . $mysqli->connect_error);
+}
 
 // 2. MEMBANGUN FILTER OTOMATIS (WAJIB) UNTUK ADMIN DAERAH
 $where_clauses = [];
@@ -47,9 +52,12 @@ if (!empty($user_district)) {
 $where_sql = "WHERE " . implode(' AND ', $where_clauses);
 
 // FUNGSI BANTU UNTUK MENJALANKAN QUERY DENGAN AMAN
-function executeQuery($mysqli, $sql, $types = '', $params = []) {
+function executeQuery($mysqli, $sql, $types = '', $params = [])
+{
     $stmt = $mysqli->prepare($sql);
-    if (!$stmt) { die("Query gagal: " . $mysqli->error); }
+    if (!$stmt) {
+        die("Query gagal: " . $mysqli->error);
+    }
     if (!empty($types) && !empty($params)) {
         $stmt->bind_param($types, ...$params);
     }
@@ -90,9 +98,16 @@ if ($result_status) {
     while ($row = $result_status->fetch_assoc()) {
         $total_status_reports += $row['jumlah'];
         switch ($row['status']) {
-            case 'pending': $status_counts['menunggu'] += $row['jumlah']; break;
-            case 'confirmed': case 'investigating': $status_counts['proses'] += $row['jumlah']; break;
-            case 'resolved': $status_counts['selesai'] += $row['jumlah']; break;
+            case 'pending':
+                $status_counts['menunggu'] += $row['jumlah'];
+                break;
+            case 'confirmed':
+            case 'investigating':
+                $status_counts['proses'] += $row['jumlah'];
+                break;
+            case 'resolved':
+                $status_counts['selesai'] += $row['jumlah'];
+                break;
         }
     }
 }
@@ -106,7 +121,8 @@ $query_laporan_terbaru_sql = "SELECT r.school_name, it.name AS issue_name, r.sta
 $result_laporan_terbaru = executeQuery($mysqli, $query_laporan_terbaru_sql, $types, $params);
 
 // --- Helper Function untuk Badge Status ---
-function getStatusBadge($status) {
+function getStatusBadge($status)
+{
     // ... (fungsi ini tetap sama) ...
 }
 ?>
@@ -124,8 +140,8 @@ function getStatusBadge($status) {
                         <i class="fas fa-user text-indigo-600"></i>
                     </div>
                     <div class="text-sm">
-                        <p class="font-medium text-gray-700">Admin User</p>
-                        <p class="text-gray-500 text-xs">admin@didikara.com</p>
+                        <p class="font-medium text-gray-700"><?= htmlspecialchars($_SESSION['full_name'] ?? 'Nama Pengguna') ?></p>
+                        <p class="text-gray-500 text-xs"><?= htmlspecialchars($_SESSION['email'] ?? 'email@pengguna.com') ?></p>
                     </div>
                 </div>
             </div>
@@ -169,14 +185,14 @@ function getStatusBadge($status) {
 
                 <!-- <div class="bg-white rounded-lg shadow-sm p-6">
                     <div class="flex items-start justify-between"> -->
-                        <!-- <div>
+                <!-- <div>
                             <p class="text-gray-500 text-sm">Kontributor Aktif</p>
                             <h3 class="text-2xl font-bold text-gray-800 mt-1"><?= number_format($kontributor_aktif) ?></h3>
                         </div> -->
-                        <!-- <div class="bg-indigo-50 p-3 rounded-lg">
+                <!-- <div class="bg-indigo-50 p-3 rounded-lg">
                             <i class="fas fa-users text-teal-600 text-xl"></i>
                         </div> -->
-                    <!-- </div>
+                <!-- </div>
                 </div> -->
 
                 <div class="bg-white rounded-lg shadow-sm p-6">
@@ -256,21 +272,21 @@ function getStatusBadge($status) {
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             <?php if ($result_laporan_terbaru->num_rows > 0): ?>
-                                <?php while($row = $result_laporan_terbaru->fetch_assoc()): ?>
-                                 <tr class="hover:bg-gray-50">
-                                     <td class="px-6 py-4 whitespace-nowrap">
-                                         <span class="text-sm font-medium text-gray-900"><?= htmlspecialchars($row['school_name']) ?></span>
-                                     </td>
-                                     <td class="px-6 py-4 whitespace-nowrap">
-                                         <span class="text-sm text-gray-500"><?= htmlspecialchars($row['issue_name']) ?></span>
-                                     </td>
-                                     <td class="px-6 py-4 whitespace-nowrap">
-                                         <?= getStatusBadge($row['status']) ?>
-                                     </td>
-                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                         <?= date('Y-m-d', strtotime($row['created_at'])) ?>
-                                     </td>
-                                 </tr>
+                                <?php while ($row = $result_laporan_terbaru->fetch_assoc()): ?>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="text-sm font-medium text-gray-900"><?= htmlspecialchars($row['school_name']) ?></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="text-sm text-gray-500"><?= htmlspecialchars($row['issue_name']) ?></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <?= getStatusBadge($row['status']) ?>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <?= date('Y-m-d', strtotime($row['created_at'])) ?>
+                                        </td>
+                                    </tr>
                                 <?php endwhile; ?>
                             <?php else: ?>
                                 <tr>

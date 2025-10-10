@@ -16,9 +16,14 @@ $user_province_id = $_SESSION['province_id'] ?? null;
 // =======================================================
 
 // 1. KONEKSI DATABASE
-$host = 'localhost'; $user = 'root'; $pass = ''; $db = 'db_didikara';
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db = 'db_didikara';
 $mysqli = new mysqli($host, $user, $pass, $db);
-if ($mysqli->connect_error) { die("Koneksi database gagal: " . $mysqli->connect_error); }
+if ($mysqli->connect_error) {
+    die("Koneksi database gagal: " . $mysqli->connect_error);
+}
 
 // 2. LOGIKA PAGINASI DAN FILTER MANUAL
 global $page_number; // Ambil dari route.php
@@ -46,7 +51,7 @@ if (!empty($user_province_id)) {
     $types .= 'i';
 } else {
     // Keamanan jika admin wilayah tidak punya data provinsi
-    $where_clauses[] = "1=0"; 
+    $where_clauses[] = "1=0";
 }
 
 // Filter MANUAL dari pengguna
@@ -68,22 +73,30 @@ $where_sql = "WHERE " . implode(' AND ', $where_clauses);
 // 4. QUERY UNTUK MENGHITUNG TOTAL DATA
 $count_sql = "SELECT COUNT(r.id) as total FROM reports r $where_sql";
 $stmt_count = $mysqli->prepare($count_sql);
-if (count($params) > 0) { $stmt_count->bind_param($types, ...$params); }
+if (count($params) > 0) {
+    $stmt_count->bind_param($types, ...$params);
+}
 $stmt_count->execute();
 $total_results = $stmt_count->get_result()->fetch_assoc()['total'];
 $total_pages = ceil($total_results / $limit);
 
 // 5. QUERY UTAMA UNTUK MENGAMBIL DATA LAPORAN
 $sql = "SELECT r.id, r.school_name, it.name AS issue_name, r.status, r.created_at FROM reports r JOIN issue_types it ON r.issue_type_id = it.id $where_sql ORDER BY r.id DESC LIMIT ? OFFSET ?";
-$params_main_query = $params; $params_main_query[] = $limit; $params_main_query[] = $offset; $types_main_query = $types . 'ii';
+$params_main_query = $params;
+$params_main_query[] = $limit;
+$params_main_query[] = $offset;
+$types_main_query = $types . 'ii';
 $stmt = $mysqli->prepare($sql);
-if(count($params_main_query) > 0) { $stmt->bind_param($types_main_query, ...$params_main_query); }
+if (count($params_main_query) > 0) {
+    $stmt->bind_param($types_main_query, ...$params_main_query);
+}
 $stmt->execute();
 $result = $stmt->get_result();
 
 // 6. FUNGSI BANTU
-function getStatusBadge($status) {
-     $styles = [
+function getStatusBadge($status)
+{
+    $styles = [
         'pending'       => 'bg-yellow-100 text-yellow-800',
         'confirmed'     => 'bg-blue-100 text-blue-800',
         'investigating' => 'bg-cyan-100 text-cyan-800',
@@ -102,7 +115,7 @@ function getStatusBadge($status) {
     $style = $styles[$status] ?? 'bg-gray-200 text-gray-800';
     $status_text = $text[$status] ?? ucfirst($status);
     return "<span class='px-2 py-1 text-xs font-medium rounded-full {$style}'>{$status_text}</span>";
- }
+}
 ?>
 <div id="sidebar-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
 <div id="main-content" class="main-content">
@@ -117,8 +130,8 @@ function getStatusBadge($status) {
                         <i class="fas fa-user text-indigo-600"></i>
                     </div>
                     <div class="text-sm">
-                        <p class="font-medium text-gray-700">Admin User</p>
-                        <p class="text-gray-500 text-xs">admin@didikara.com</p>
+                        <p class="font-medium text-gray-700"><?= htmlspecialchars($_SESSION['full_name'] ?? 'Nama Pengguna') ?></p>
+                        <p class="text-gray-500 text-xs"><?= htmlspecialchars($_SESSION['email'] ?? 'email@pengguna.com') ?></p>
                     </div>
                 </div>
             </div>
@@ -206,7 +219,7 @@ function getStatusBadge($status) {
                         <nav>
                             <ul class="flex items-center space-x-2">
                                 <?php for ($i = 1; $i <= $total_pages; $i++):
-                                  $params = ['view' => 'laporan', 'page' => $i, 'jenjang' => $filter_jenjang, 'status' => $filter_status, 'search' => $search_query];
+                                    $params = ['view' => 'laporan', 'page' => $i, 'jenjang' => $filter_jenjang, 'status' => $filter_status, 'search' => $search_query];
                                 ?>
                                     <li>
                                         <a href="?<?= http_build_query($params) ?>"

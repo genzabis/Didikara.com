@@ -85,7 +85,8 @@ $query_laporan_terbaru = "
 $result_laporan_terbaru = $mysqli->query($query_laporan_terbaru);
 
 // --- Helper Function untuk Badge Status ---
-function getStatusBadge($status) {
+function getStatusBadge($status)
+{
     switch ($status) {
         case 'pending':
             return '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">Menunggu</span>';
@@ -113,8 +114,8 @@ function getStatusBadge($status) {
                         <i class="fas fa-user text-indigo-600"></i>
                     </div>
                     <div class="text-sm">
-                        <p class="font-medium text-gray-700">Admin User</p>
-                        <p class="text-gray-500 text-xs">admin@didikara.com</p>
+                        <p class="font-medium text-gray-700"><?= htmlspecialchars($_SESSION['full_name'] ?? 'Nama Pengguna') ?></p>
+                        <p class="text-gray-500 text-xs"><?= htmlspecialchars($_SESSION['email'] ?? 'email@pengguna.com') ?></p>
                     </div>
                 </div>
             </div>
@@ -245,21 +246,21 @@ function getStatusBadge($status) {
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             <?php if ($result_laporan_terbaru->num_rows > 0): ?>
-                                <?php while($row = $result_laporan_terbaru->fetch_assoc()): ?>
-                                 <tr class="hover:bg-gray-50">
-                                     <td class="px-6 py-4 whitespace-nowrap">
-                                         <span class="text-sm font-medium text-gray-900"><?= htmlspecialchars($row['school_name']) ?></span>
-                                     </td>
-                                     <td class="px-6 py-4 whitespace-nowrap">
-                                         <span class="text-sm text-gray-500"><?= htmlspecialchars($row['issue_name']) ?></span>
-                                     </td>
-                                     <td class="px-6 py-4 whitespace-nowrap">
-                                         <?= getStatusBadge($row['status']) ?>
-                                     </td>
-                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                         <?= date('Y-m-d', strtotime($row['created_at'])) ?>
-                                     </td>
-                                 </tr>
+                                <?php while ($row = $result_laporan_terbaru->fetch_assoc()): ?>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="text-sm font-medium text-gray-900"><?= htmlspecialchars($row['school_name']) ?></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="text-sm text-gray-500"><?= htmlspecialchars($row['issue_name']) ?></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <?= getStatusBadge($row['status']) ?>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <?= date('Y-m-d', strtotime($row['created_at'])) ?>
+                                        </td>
+                                    </tr>
                                 <?php endwhile; ?>
                             <?php else: ?>
                                 <tr>
