@@ -29,12 +29,12 @@
             <div>
                 <h3 class="text-lg font-semibold mb-4">Menu</h3>
                 <ul class="space-y-2">
-                    <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
-                    <li><a href="map.html" class="text-gray-300 hover:text-white transition-colors">Peta Interaktif</a></li>
-                    <li><a href="report.html" class="text-gray-300 hover:text-white transition-colors">Laporkan Masalah</a></li>
-                    <li><a href="search.html" class="text-gray-300 hover:text-white transition-colors">Cari & Filter Laporan</a></li>
-                    <li><a href="news.html" class="text-gray-300 hover:text-white transition-colors">Berita & Advokasi</a></li>
-                    <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">Tentang Kami</a></li>
+                    <li><a href="./?page=home" class="text-gray-300 hover:text-white transition-colors">Beranda</a></li>
+                    <li><a href="./?page=map" class="text-gray-300 hover:text-white transition-colors">Peta Interaktif</a></li>
+                    <li><a href="./?page=report" class="text-gray-300 hover:text-white transition-colors">Laporkan Masalah</a></li>
+                    <li><a href="./?page=search" class="text-gray-300 hover:text-white transition-colors">Cari Laporan</a></li>
+                    <li><a href="./?page=news" class="text-gray-300 hover:text-white transition-colors">Berita</a></li>
+                    <li><a href="./?page=about" class="text-gray-300 hover:text-white transition-colors">Tentang Kami</a></li>
                 </ul>
             </div>
 

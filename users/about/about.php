@@ -1,7 +1,5 @@
-<!-- About / Tentang Didikara -->
 <section class="pt-24 pb-16 min-h-screen">
     <style>
-        /* utilitas ringan */
         .gradient-bg {
             background: radial-gradient(1200px 600px at 50% -200px, #4f46e5 0, #4338ca 20%, #312e81 55%, #1f2937 100%)
         }
@@ -16,8 +14,6 @@
     </style>
 
     <div class="container mx-auto px-4 md:px-6">
-
-        <!-- Hero -->
         <header class="relative rounded-xl overflow-hidden mb-16">
             <div class="gradient-bg absolute inset-0"></div>
             <div class="absolute inset-0 opacity-20">
@@ -31,8 +27,6 @@
                 </p>
             </div>
         </header>
-
-        <!-- Our Story -->
         <section class="mb-16">
             <div class="text-center mb-8">
                 <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-4">Kisah Kami</h2>
@@ -42,32 +36,25 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="animate-slideIn">
                     <p class="text-gray-700 mb-4">
-                        <span class="text-indigo-900 font-semibold">Didikara.com</span> lahir dari keprihatinan pemuda desa di Jawa Barat
-                        terhadap kondisi pendidikan sekitar. Banyak masalah teridentifikasi, namun belum ada
-                        platform yang memfasilitasi pelaporan dan tindak lanjut terstruktur.
+                        <span class="text-indigo-900 font-semibold">Didikara.com</span> Terbentuknya DIdikara.com lahir dari keprihatinan terhadap ketimpangan fasilitas pendidikan yang masih terjadi di berbagai pelosok negeri. Ketika masih ada sekolah yang berdiri di bawah atap bocor, tanpa listrik, meja belajar, atau buku yang memadai, maka keadilan pendidikan belum benar-benar terwujud.
                     </p>
                     <p class="text-gray-700 mb-4">
-                        Tahun 2022, lima pemuda lintas bidang (pendidikan, teknologi, kebijakan publik) berkolaborasi
-                        membangun platform untuk menghimpun laporan, memvisualisasikan data, dan memfasilitasi kolaborasi
-                        antar pemangku kepentingan pendidikan.
+                        Didikara.com tidak hanya dirancang sebagai sebuah website, melainkan sebagai gerakan sosial digital yang mendorong partisipasi masyarakat untuk ikut mengawasi dan menyuarakan kondisi nyata di lapangan. Melalui pelaporan berbasis bukti dan kolaborasi berbagai pihak, platform ini ingin memastikan bahwa suara dari daerah terpencil dapat sampai ke pengambil kebijakan.
                     </p>
                     <p class="text-gray-700">
-                        Dengan dukungan awal organisasi non-profit dan universitas lokal, Didikara.com
-                        diluncurkan Maret 2023 dan telah membantu memetakan ratusan masalah pendidikan di berbagai wilayah.
+                        Dengan demikian, Didikara.com merealisasikan keyakinan bahwa pendidikan adalah hak fundamental setiap anak, dan pemenuhan hak tersebut adalah tanggung jawab bersama yang kini dapat diwujudkan melalui kekuatan gotong royong digital.
                     </p>
                 </div>
                 <figure class="animate-fadeIn w-full md:max-w-2xl md:justify-self-end">
                     <div class="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-lg shadow-lg">
                         <img
-                            src="https://images.pexels.com/photos/8423721/pexels-photo-8423721.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-jbQ3OY7CK_dYtUifWhOcFb13bEPRIcy2kQ&s"
                             alt="Tim Didikara berdiskusi"
                             class="absolute inset-0 w-full h-full object-cover object-center" />
                     </div>
                 </figure>
             </div>
         </section>
-
-        <!-- Vision & Mission -->
         <section class="mb-16">
             <div class="text-center mb-8">
                 <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-4">Visi & Misi</h2>
@@ -83,8 +70,7 @@
                         <h3 class="text-xl font-bold text-indigo-900">Visi</h3>
                     </div>
                     <p class="text-gray-700">
-                        Menjadi platform kolaboratif terdepan yang mendorong pemerataan akses dan kualitas pendidikan di Indonesia
-                        melalui keterlibatan aktif masyarakat lokal, khususnya pemuda desa.
+                        Menjadi gerakan sosial digital yang mendorong terwujudnya pemerataan fasilitas pendidikan secara inklusif dan berkelanjutan melalui pemanfaatan teknologi partisipatif, pendataan yang akurat dan transparan, serta kolaborasi aktif antara masyarakat, pemerintah, lembaga kependidikan, serta berbagai pemangku kepentingan.
                     </p>
                 </article>
 
@@ -98,26 +84,28 @@
                     <ul class="text-gray-700 space-y-2 list-none">
                         <li class="flex">
                             <span class="text-amber-500 mr-2">•</span>
-                            Membangun sistem pelaporan yang mudah diakses dan dipahami masyarakat lokal.
+                            Menjadi platform pelaporan terbuka yang memfasilitasi partisipasi masyarakat secara langsung dan akurat.
                         </li>
                         <li class="flex">
                             <span class="text-amber-500 mr-2">•</span>
-                            Menyediakan visualisasi data yang efektif untuk mengidentifikasi pola masalah pendidikan.
+                            Membangun sistem verifikasi kredibel untuk setiap laporan yang masuk.
                         </li>
                         <li class="flex">
                             <span class="text-amber-500 mr-2">•</span>
-                            Memfasilitasi kolaborasi antara pemuda desa, sekolah, pemerintah, dan organisasi.
+                            Menjadi jembatan penghubung masyarakat dengan pemangku kebijakan dari dinas pendidikan hingga pihak swasta demi intervensi nyata.
                         </li>
                         <li class="flex">
                             <span class="text-amber-500 mr-2">•</span>
-                            Mendokumentasikan serta membagikan praktik terbaik penyelesaian masalah pendidikan lokal.
+                            Menjalankan seluruh proses dengan transparansi dan akuntabilitas penuh, mempublikasikan progres penanganan laporan sebagai kontrol sosial.
+                        </li>
+                        <li class="flex">
+                            <span class="text-amber-500 mr-2">•</span>
+                            Menjadi ruang advokasi dan edukasi digital tentang pentingnya pemerataan fasilitas pendidikan sebagai bagian dari keadilan sosial.
                         </li>
                     </ul>
                 </article>
             </div>
         </section>
-
-        <!-- Our Values -->
         <section class="mb-16">
             <div class="text-center mb-8">
                 <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-4">Nilai-Nilai Kami</h2>
@@ -134,7 +122,7 @@
                     </div>
                     <h3 class="text-lg font-semibold text-indigo-900 mb-2">Partisipatif</h3>
                     <p class="text-gray-600">
-                        Solusi terbaik lahir dari keterlibatan aktif masyarakat lokal yang paling memahami konteksnya.
+                        Kami percaya bahwa solusi terbaik datang dari keterlibatan aktif masyarakat lokal yang paling memahami konteks dan kebutuhan mereka.
                     </p>
                 </article>
 
@@ -144,7 +132,7 @@
                     </div>
                     <h3 class="text-lg font-semibold text-indigo-900 mb-2">Transparan</h3>
                     <p class="text-gray-600">
-                        Menjunjung keterbukaan data, proses pengambilan keputusan, dan penggunaan sumber daya.
+                        Kami menjunjung tinggi keterbukaan dalam pengelolaan data, proses pengambilan keputusan, dan penggunaan sumber daya.
                     </p>
                 </article>
 
@@ -154,113 +142,9 @@
                     </div>
                     <h3 class="text-lg font-semibold text-indigo-900 mb-2">Berorientasi Dampak</h3>
                     <p class="text-gray-600">
-                        Setiap inisiatif diarahkan untuk menciptakan perubahan nyata pada kualitas pendidikan.
+                        Setiap tindakan kami selalu diarahkan untuk menciptakan perubahan nyata dalam meningkatkan kualitas pendidikan.
                     </p>
                 </article>
-            </div>
-        </section>
-
-        <!-- Our Team -->
-        <section class="mb-16">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-4">Tim Kami</h2>
-                <div class="w-24 h-1 bg-amber-400 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Tim multidisiplin yang terdorong untuk meningkatkan kualitas pendidikan di Indonesia.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <article class="bg-white rounded-lg shadow-md overflow-hidden text-center animate-fadeIn hover-lift">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            alt="Andi Wijaya" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-indigo-900">Andi Wijaya</h3>
-                        <p class="text-gray-600">Pendiri & CEO</p>
-                    </div>
-                </article>
-
-                <article class="bg-white rounded-lg shadow-md overflow-hidden text-center animate-fadeIn hover-lift">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            alt="Siti Rahayu" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-indigo-900">Siti Rahayu</h3>
-                        <p class="text-gray-600">Kepala Program</p>
-                    </div>
-                </article>
-
-                <article class="bg-white rounded-lg shadow-md overflow-hidden text-center animate-fadeIn hover-lift">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            alt="Budi Santoso" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-indigo-900">Budi Santoso</h3>
-                        <p class="text-gray-600">Pengembang Platform</p>
-                    </div>
-                </article>
-
-                <article class="bg-white rounded-lg shadow-md overflow-hidden text-center animate-fadeIn hover-lift">
-                    <div class="h-56 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                            alt="Dewi Anggraini" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-indigo-900">Dewi Anggraini</h3>
-                        <p class="text-gray-600">Manajer Komunitas</p>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- Contact (info only) -->
-        <section>
-            <div class="text-center mb-8">
-                <h2 class="text-2xl md:text-3xl font-bold text-indigo-900 mb-4">Hubungi Kami</h2>
-                <div class="w-24 h-1 bg-amber-400 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto">
-                    Punya pertanyaan atau ingin berkolaborasi? Hubungi kami lewat informasi berikut.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <aside class="bg-white p-6 rounded-lg shadow-md animate-fadeIn">
-                    <h3 class="text-lg font-semibold text-indigo-900 mb-4">Informasi Kontak</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="text-indigo-900 font-medium mb-1">Alamat</h4>
-                            <p class="text-gray-600">Jl. Pendidikan No. 123, Jakarta Pusat, Indonesia</p>
-                        </div>
-                        <div>
-                            <h4 class="text-indigo-900 font-medium mb-1">Email</h4>
-                            <a href="mailto:info@didikara.com" class="text-indigo-600 hover:text-indigo-800">info@didikara.com</a>
-                        </div>
-                        <div>
-                            <h4 class="text-indigo-900 font-medium mb-1">Telepon</h4>
-                            <a href="tel:+62212345678" class="text-indigo-600 hover:text-indigo-800">+62 21 2345 678</a>
-                        </div>
-                        <div class="mt-6">
-                            <h4 class="text-indigo-900 font-medium mb-3">Ikuti Kami</h4>
-                            <nav class="flex space-x-4" aria-label="Social links">
-                                <a href="#" aria-label="Facebook" class="text-indigo-600 hover:text-indigo-800"><i class="fab fa-facebook text-2xl"></i></a>
-                                <a href="#" aria-label="Twitter/X" class="text-indigo-600 hover:text-indigo-800"><i class="fab fa-twitter text-2xl"></i></a>
-                                <a href="#" aria-label="Instagram" class="text-indigo-600 hover:text-indigo-800"><i class="fab fa-instagram text-2xl"></i></a>
-                                <a href="#" aria-label="GitHub" class="text-indigo-600 hover:text-indigo-800"><i class="fab fa-github text-2xl"></i></a>
-                            </nav>
-                        </div>
-                    </div>
-                </aside>
-
-                <aside class="bg-white p-6 rounded-lg shadow-md animate-fadeIn">
-                    <h3 class="text-lg font-semibold text-indigo-900 mb-4">Lokasi</h3>
-                    <div class="h-56 bg-gray-200 rounded-md flex items-center justify-center">
-                        <p class="text-gray-500 text-sm">(Peta lokasi akan ditampilkan di sini)</p>
-                    </div>
-                </aside>
             </div>
         </section>
     </div>

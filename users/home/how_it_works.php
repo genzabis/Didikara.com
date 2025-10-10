@@ -66,7 +66,7 @@
                             <div class="mr-3 text-indigo-700">
                                 <i class="fas fa-user-check text-xl"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-indigo-900">Validasi & Verifikasi</h3>
+                            <h3 class="text-lg font-semibold text-indigo-900">Smart Verification</h3>
                         </div>
                         <p class="text-gray-600">Tim kami memvalidasi laporan yang masuk untuk memastikan keakuratan
                             data sebelum ditindaklanjuti dengan pemangku kepentingan terkait.</p>

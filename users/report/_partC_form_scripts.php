@@ -1,15 +1,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-
-        /**
-         * =================================================================
-         * APLIKASI UTAMA (NAMESPACE)
-         * =================================================================
-         */
         const app = {
             state: {
                 currentStep: 0,
-                schoolLocation: null, // Menyimpan {lat, lng} sekolah terpilih
+                schoolLocation: null,
                 photoQuality: {
                     score: 0,
                     res: 0,
@@ -52,10 +46,10 @@
                     if (distance !== null) {
                         distanceInfo.classList.remove('hidden');
                         distanceInfo.textContent = `Jarak dari lokasi Anda ke sekolah: ${distance.toFixed(0)} meter.`;
-                        if (distance > 500) { // Batas jarak 500 meter
+                        if (distance > 50) {
                             distanceInfo.classList.remove('text-indigo-700');
                             distanceInfo.classList.add('text-red-600');
-                            distanceInfo.textContent += ' (JARAK MELEBIHI 500m)';
+                            distanceInfo.textContent += ' (JARAK MELEBIHI 50M)';
                         } else {
                             distanceInfo.classList.remove('text-red-600');
                             distanceInfo.classList.add('text-indigo-700');
@@ -80,12 +74,6 @@
                 });
             }
         };
-
-        /**
-         * =================================================================
-         * FORM STEPPER MODULE
-         * =================================================================
-         */
         app.formStepper = {
             steps: app.utils.$$('.form-step'),
             indicators: app.utils.$$('.step-indicator'),
@@ -188,12 +176,6 @@
                 scope.querySelectorAll('.error-message').forEach(x => x.remove());
             }
         };
-
-        /**
-         * =================================================================
-         * GPS & MAP MODULE
-         * =================================================================
-         */
         app.gpsMap = {
             map: null,
             marker: null,
@@ -292,12 +274,6 @@
                 );
             }
         };
-
-        /**
-         * =================================================================
-         * CAMERA HANDLER MODULE
-         * =================================================================
-         */
         app.cameraHandler = {
             stream: null,
             isReady: false,
@@ -484,13 +460,6 @@
                 if (this.nextBtnStep2) this.nextBtnStep2.disabled = t < 0.60;
             }
         };
-
-        /**
-         * =================================================================
-         * SCHOOL FINDER MODULE
-         * =================================================================
-         */
-        // Ganti seluruh modul app.schoolFinder-mu dengan ini
         app.schoolFinder = {
             inputEl: app.utils.$('#schoolName'),
             suggestBox: app.utils.$('#school-suggest'),
@@ -542,7 +511,6 @@
             },
 
             _render(items) {
-                // --- BAGIAN YANG DIPERBAIKI ADA DI SINI ---
                 this.suggestBox.innerHTML = items.slice(0, 8).map(it => `
             <button type="button" class="w-full text-left px-3 py-2 hover:bg-indigo-50" 
                     data-name="${app.utils.e(it.name || '')}" 
@@ -554,8 +522,6 @@
                 <div class="text-sm text-indigo-900 font-medium">${app.utils.e(it.name || '-')}</div>
                 <div class="text-xs text-gray-600">${app.utils.e(it.address || '')}</div>
             </button>`).join('');
-                // --- AKHIR BAGIAN PERBAIKAN ---
-
                 this.suggestBox.classList.remove('hidden');
                 this.suggestBox.querySelectorAll('button').forEach(btn => {
                     btn.addEventListener('click', () => {
@@ -608,11 +574,6 @@
             }
         };
 
-        /**
-         * =================================================================
-         * FORM SUBMITTER MODULE
-         * =================================================================
-         */
         app.formSubmitter = {
             form: app.utils.$('#report-form'),
 
@@ -660,11 +621,6 @@
             }
         };
 
-        /**
-         * =================================================================
-         * MODALS MODULE
-         * =================================================================
-         */
         app.modals = {
             successModal: app.utils.$('#success-modal'),
             errorModal: app.utils.$('#error-modal'),
@@ -700,8 +656,7 @@
                 document.body.style.overflow = '';
             }
         };
-
-        // Jalankan Aplikasi
+        
         app.init();
     });
 </script>

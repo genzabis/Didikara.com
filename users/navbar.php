@@ -10,7 +10,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="?page=home"
-                        class="text-sm font-medium text-gray-700 hover:text-indigo-700 transition-colors">Beranda</a>
+                        class="text-sm font-medium text-gray-700 hover:text-indigo-700 transition-colors active">Beranda</a>
                     <a href="?page=map"
                         class="text-sm font-medium text-gray-700 hover:text-indigo-700 transition-colors">Peta
                         Interaktif</a>
