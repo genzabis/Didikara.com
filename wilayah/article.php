@@ -3,7 +3,7 @@
 // session_start();
 
 // Keamanan: Pastikan user sudah login dan merupakan admin pusat
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin-daerah') {
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin-wilayah') {
     die("Akses ditolak. Hanya Admin yang dapat mengelola artikel.");
 }
 

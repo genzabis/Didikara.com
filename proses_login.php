@@ -77,10 +77,10 @@ if ($result && $result->num_rows === 1) {
                 header('Location: ./admin/');
                 break;
             case 'admin-daerah':
-                header('Location: /daerah/');
+                header('Location: ./daerah/');
                 break;
             case 'admin-wilayah':
-                header('Location: /wilayah/');
+                header('Location: ./wilayah/');
                 break;
             default:
                 // Role valid tapi bukan admin* → boleh jadikan error generik juga biar tidak bocor info
