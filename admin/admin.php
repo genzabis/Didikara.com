@@ -115,11 +115,11 @@ function getStatusBadge($isActive)
                         <input type="password" name="password" id="password" required class="mt-1 w-full px-3 py-2 border rounded-md">
                     </div>
                     <div>
-                        <label for="role" class="block text-sm font-medium text-gray-700">Peran (Role)</label>
-                        <select name="role" id="role" required class="mt-1 w-full px-3 py-2 border rounded-md">
-                            <option value="admin_pusat">Admin Pusat</option>
-                            <option value="admin_wilayah">Admin Wilayah</option>
-                            <option value="admin_daerah">Admin Daerah</option>
+                        <label for="add_admin_role" class="block text-sm font-medium text-gray-700">Peran (Role)</label>
+                        <select name="role" id="add_admin_role" required class="mt-1 w-full px-3 py-2 border rounded-md">
+                            <option value="admin">Admin Pusat</option>
+                            <option value="admin-wilayah">Admin Wilayah</option>
+                            <option value="admin-daerah">Admin Daerah</option>
                         </select>
                     </div>
                     <div id="locationInputs" class="space-y-4 hidden">
@@ -254,50 +254,50 @@ function getStatusBadge($isActive)
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const addAdminModal = document.getElementById('addAdminModal');
-    const addAdminBtn = document.getElementById('addAdminBtn');
-    const closeAddModal = document.getElementById('closeAddModal');
-    const cancelAdd = document.getElementById('cancelAdd');
-    
-    const roleSelect = document.getElementById('role');
-    const locationInputs = document.getElementById('locationInputs');
-    const districtInputContainer = document.getElementById('districtInputContainer');
+    document.addEventListener('DOMContentLoaded', function() {
+        const addAdminModal = document.getElementById('addAdminModal');
+        const addAdminBtn = document.getElementById('addAdminBtn');
+        const closeAddModal = document.getElementById('closeAddModal');
+        const cancelAdd = document.getElementById('cancelAdd');
 
-    // Fungsi untuk menampilkan/menyembunyikan input lokasi
-    function toggleLocationInputs() {
-        const selectedRole = roleSelect.value;
-        if (selectedRole === 'admin_wilayah' || selectedRole === 'admin_daerah') {
-            locationInputs.classList.remove('hidden');
-            if (selectedRole === 'admin_daerah') {
-                districtInputContainer.classList.remove('hidden');
+        const roleSelect = document.getElementById('add_admin_role');
+        const locationInputs = document.getElementById('locationInputs');
+        const districtInputContainer = document.getElementById('districtInputContainer');
+
+        // Fungsi untuk menampilkan/menyembunyikan input lokasi
+        function toggleLocationInputs() {
+            const selectedRole = roleSelect.value;
+            if (selectedRole === 'admin-wilayah' || selectedRole === 'admin-daerah') {
+                locationInputs.classList.remove('hidden');
+                if (selectedRole === 'admin-daerah') {
+                    districtInputContainer.classList.remove('hidden');
+                } else {
+                    districtInputContainer.classList.add('hidden');
+                }
             } else {
-                districtInputContainer.classList.add('hidden');
+                locationInputs.classList.add('hidden');
             }
-        } else {
-            locationInputs.classList.add('hidden');
         }
-    }
 
-    // Tampilkan modal saat tombol "Tambah Admin" diklik
-    addAdminBtn.addEventListener('click', () => {
-        addAdminModal.classList.remove('hidden');
-        addAdminModal.classList.add('flex');
+        // Tampilkan modal saat tombol "Tambah Admin" diklik
+        addAdminBtn.addEventListener('click', () => {
+            addAdminModal.classList.remove('hidden');
+            addAdminModal.classList.add('flex');
+        });
+
+        // Sembunyikan modal
+        function hideModal() {
+            addAdminModal.classList.add('hidden');
+            addAdminModal.classList.remove('flex');
+        }
+
+        closeAddModal.addEventListener('click', hideModal);
+        cancelAdd.addEventListener('click', hideModal);
+
+        // Event listener untuk dropdown role
+        roleSelect.addEventListener('change', toggleLocationInputs);
+
+        // Panggil sekali saat halaman dimuat
+        toggleLocationInputs();
     });
-
-    // Sembunyikan modal
-    function hideModal() {
-        addAdminModal.classList.add('hidden');
-        addAdminModal.classList.remove('flex');
-    }
-
-    closeAddModal.addEventListener('click', hideModal);
-    cancelAdd.addEventListener('click', hideModal);
-
-    // Event listener untuk dropdown role
-    roleSelect.addEventListener('change', toggleLocationInputs);
-
-    // Panggil sekali saat halaman dimuat
-    toggleLocationInputs();
-});
 </script>
