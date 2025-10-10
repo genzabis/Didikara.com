@@ -2,7 +2,7 @@
 session_start();
 
 // Keamanan: Pastikan hanya admin pusat yang bisa menambah artikel
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin-daerah') {
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin-wilayah') {
     die("Akses ditolak.");
 }
 
