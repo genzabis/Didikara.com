@@ -498,7 +498,7 @@
                 try {
                     const lat = app.gpsMap.latInput?.value || '';
                     const lng = app.gpsMap.lngInput?.value || '';
-                    const url = `/didikara.com/users/report/schools_proxy.php?q=${encodeURIComponent(query)}&lat=${lat}&lng=${lng}`;
+                    const url = `./users/report/schools_proxy.php?q=${encodeURIComponent(query)}&lat=${lat}&lng=${lng}`;
                     const res = await fetch(url);
                     if (!res.ok) throw new Error(`HTTP ${res.status}`);
                     const items = await res.json();
