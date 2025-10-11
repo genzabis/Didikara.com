@@ -244,7 +244,7 @@
                     err => {
                         console.error(err);
                         alert('GPS wajib diaktifkan untuk melapor. Mohon izinkan akses lokasi dan segarkan halaman.');
-                        window.location.href = '/';
+                        window.location.href = './';
                     }, {
                         enableHighAccuracy: true,
                         timeout: 12000,
