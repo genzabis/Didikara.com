@@ -5,9 +5,12 @@
 require_once 'config.php';
 
 // 1. KONEKSI DATABASE
-$host = 'localhost'; $user = 'root'; $pass = ''; $db = 'db_didikara';
+$host = 'localhost';
+$user = 'argtgbgt_db_didikara'; // User default XAMPP/MariaDB
+$pass = 'pWK^hRLZJ-V64CQs';     // Password default XAMPP/MariaDB kosong
+$db   = 'argtgbgt_db_ddkr';
 $mysqli = new mysqli($host, $user, $pass, $db);
-if ($mysqli->connect_error) { die("Koneksi gagal"); }
+if ($mysqli->connect_error) { die("Koneksi gagal: " . $mysqli->connect_error); }
 
 // 2. AMBIL ID LAPORAN DENGAN AMAN
 $report_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;

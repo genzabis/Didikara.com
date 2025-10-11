@@ -3,9 +3,9 @@
 // ===========================================
 // Sesuaikan detail ini dengan konfigurasi database Anda.
 $host = 'localhost';
-$user = 'root'; // User default XAMPP/MariaDB
-$pass = '';     // Password default XAMPP/MariaDB kosong
-$db   = 'db_didikara';
+$user = 'argtgbgt_db_didikara'; // User default XAMPP/MariaDB
+$pass = 'pWK^hRLZJ-V64CQs';     // Password default XAMPP/MariaDB kosong
+$db   = 'argtgbgt_db_ddkr';
 
 // Membuat koneksi menggunakan mysqli
 $mysqli = new mysqli($host, $user, $pass, $db);

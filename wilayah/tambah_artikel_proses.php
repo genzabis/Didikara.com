@@ -7,7 +7,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin-wilayah') 
 }
 
 // 1. KONEKSI DATABASE
-$host = 'localhost'; $user = 'root'; $pass = ''; $db = 'db_didikara';
+$host = 'localhost';
+$user = 'argtgbgt_db_didikara'; // User default XAMPP/MariaDB
+$pass = 'pWK^hRLZJ-V64CQs';     // Password default XAMPP/MariaDB kosong
+$db   = 'argtgbgt_db_ddkr';
 $mysqli = new mysqli($host, $user, $pass, $db);
 if ($mysqli->connect_error) { die("Koneksi gagal"); }
 
