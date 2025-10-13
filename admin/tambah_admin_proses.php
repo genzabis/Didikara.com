@@ -24,17 +24,45 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // 3. AMBIL DAN VALIDASI DATA DARI FORM
-$full_name = $_POST['full_name'] ?? '';
-$email = $_POST['email'] ?? '';
+$full_name = isset($_POST['full_name']) ? trim($_POST['full_name']) : '';
+$email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $password = $_POST['password'] ?? '';
-$role = $_POST['role'] ?? '';
-$province_id = !empty($_POST['province_id']) ? (int)$_POST['province_id'] : null;
-$district = !empty($_POST['district']) ? trim($_POST['district']) : null;
+$role = isset($_POST['role']) ? trim($_POST['role']) : '';
+$province_id = isset($_POST['province_id']) && $_POST['province_id'] !== '' ? (int)$_POST['province_id'] : null;
+$district = isset($_POST['district']) && $_POST['district'] !== '' ? trim($_POST['district']) : null;
 
 // Validasi dasar
-if (empty($full_name) || empty($email) || empty($password) || empty($role)) {
-    header('Location: index.php?view=admin&error=Semua data wajib diisi');
+if ($full_name === '' || $email === '' || $password === '' || $role === '') {
+    header('Location: index.php?view=admin&error=' . urlencode('Semua data wajib diisi'));
     exit();
+}
+
+// Validasi format email
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header('Location: index.php?view=admin&error=' . urlencode('Format email tidak valid'));
+    exit();
+}
+
+// Validasi panjang password minimal 8 karakter
+if (strlen($password) < 8) {
+    header('Location: index.php?view=admin&error=' . urlencode('Password minimal 8 karakter'));
+    exit();
+}
+
+// Whitelist peran yang diizinkan
+$allowed_roles = ['admin', 'admin_wilayah'];
+if (!in_array($role, $allowed_roles, true)) {
+    header('Location: index.php?view=admin&error=' . urlencode('Peran tidak diizinkan'));
+    exit();
+}
+
+// Sanitasi district bila ada (huruf, angka, spasi, dash, koma, titik)
+if ($district !== null) {
+    $district = substr($district, 0, 100);
+    if (!preg_match('/^[\p{L}0-9\s\-\.,]+$/u', $district)) {
+        header('Location: index.php?view=admin&error=' . urlencode('Nama kecamatan/kabupaten tidak valid'));
+        exit();
+    }
 }
 
 // 4. HASH PASSWORD UNTUK KEAMANAN
@@ -50,6 +78,17 @@ if ($role === 'admin') {
     $district = null;
 } elseif ($role === 'admin_wilayah') {
     $district = null; // Admin wilayah hanya terikat pada provinsi
+    // Validasi: province_id wajib untuk admin_wilayah
+    if ($province_id === null || $province_id <= 0) {
+        header('Location: index.php?view=admin&error=' . urlencode('Provinsi wajib diisi untuk Admin Wilayah'));
+        exit();
+    }
+}
+
+// Pastikan prepare berhasil
+if ($stmt === false) {
+    header('Location: index.php?view=admin&error=' . urlencode('Gagal menyiapkan penyimpanan data'));
+    exit();
 }
 
 $stmt->bind_param('ssssis', $full_name, $email, $password_hash, $role, $province_id, $district);
